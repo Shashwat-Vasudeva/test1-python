@@ -1,6 +1,22 @@
 # Step 1: Store astronaut names and assign tasks
 # CREATE dictionary astronauts
+astronauts = []
+tasks = ["Navigation", "Engineering", "Communication"]
 
+
+for i in range(3):
+    name = input("Enter astronaut name: ")
+
+    while True:
+        task = input(
+            f"Choose a task for {name} (Navigation, Engineering, Communication): "
+        )
+        if task in tasks:
+            break
+        else:
+            print("Invalid task. Please choose from the given options.")
+
+    astronauts.append((name, task))
 
 # SET tasks = navigation, engineering, and communication
 
