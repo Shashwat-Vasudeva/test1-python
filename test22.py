@@ -59,6 +59,6 @@ for name, task in astronauts:
 
 # Final mission decision
 if oxygen >= 50 and failures == 0 and food_ok:
-    print("🚀 Mission Ready for Launch!")
+    print(" Mission Ready for Launch!")
 else:
-    print("❌ Mission Not Ready for Launch.")
+    print(" Mission Not Ready for Launch.")
