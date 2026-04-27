@@ -4,7 +4,7 @@
 astronauts = []
 tasks = ["Navigation", "Engineering", "Communication"]
 
-# FOR i from 1 to 3
+# FOR i from 0 to 2
 for i in range(3):
     name = input("Enter astronaut name: ")
     # PROMPT user for astronaut name
@@ -37,10 +37,10 @@ print()
 
 failures = 0
 print("Enter system status for 3 critical systems (OK or FAIL):")
-# FOR i from 1 to 3
+# FOR i from 0 to 2
 # PROMPT user for system status ok or fail
-for i in range(1, 4):
-    status = input(f"System {i}: ")
+for i in range(3):
+    status = input(f"System {i + 1}: ")
     if status == "fail":
         failures += 1
 
@@ -71,12 +71,4 @@ if oxygen >= 50 and failures == 0 and food_ok:
 else:
     print(" Mission Not Ready for Launch.")
 
-# Step 4: Get food supply
-# PROMPT user for number of food packs
-# STORE as foodSupply
-
-# Step 5: Check mission readiness
-
-# PRINT " Mission Not Ready!"
-# ELSE
-# PRINT "Astronaut Assignments:"
+# ---------------------------------- End of code ----------------------------------
