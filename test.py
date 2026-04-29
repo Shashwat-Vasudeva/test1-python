@@ -1,16 +1,23 @@
 # Step 1: Store astronaut names and assign tasks
-# CREATE dictionary astronauts
 # SET tasks = navigation, engineering, and communication
 astronauts = []
-tasks = ["Navigation", "Engineering", "Communication"]
+tasks = [
+    "Navigation",
+    "Engineering",
+    "Communication",
+]
 
 # FOR i from 0 to 2
 for i in range(3):
-    name = input("Enter astronaut name: ")
+    name = input("Enter astronaut name: ").capitalize().strip()
     # PROMPT user for astronaut name
     while True:
-        task = input(
-            f"Choose a task for {name} (Navigation, Engineering, Communication): "
+        task = (
+            input(
+                f"Choose a task for {name} (Navigation, Engineering, Communication): "
+            )
+            .capitalize()
+            .strip()
         )
         if task in tasks:
             break
@@ -25,7 +32,7 @@ for i in range(3):
 # PROMPT user for oxygen level 0 to 100
 oxygen = int(input("Enter spaceship oxygen level (0-100): "))
 if 0 <= oxygen <= 100:
-    if oxygen >= 50:
+    if oxygen >= 30:
         print("Oxygen Status: Stable")
     else:
         print("Oxygen Status: Low")
@@ -40,7 +47,7 @@ print("Enter system status for 3 critical systems (OK or FAIL):")
 # FOR i from 0 to 2
 # PROMPT user for system status ok or fail
 for i in range(3):
-    status = input(f"System {i + 1}: ")
+    status = input(f"System {i + 1       }: ")
     if status == "fail":
         failures += 1
 
@@ -66,9 +73,9 @@ for name, task in astronauts:
     print(f"{name}: {task}")
 
 # Final mission decision
-if oxygen >= 50 and failures == 0 and food_ok:
-    print(" Mission Ready for Launch!")
+if oxygen >= 30 and failures == 0 and food_ok == True:
+    print("Mission Ready for Launch!")
 else:
-    print(" Mission Not Ready for Launch.")
+    print("Mission Not Ready for Launch.")
 
 # ---------------------------------- End of code ----------------------------------
