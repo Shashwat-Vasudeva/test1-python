@@ -1,81 +1,99 @@
-# Step 1: Store astronaut names and assign tasks
-# SET tasks = navigation, engineering, and communication
-astronauts = []
-tasks = [
-    "Navigation",
-    "Engineering",
-    "Communication",
-]
+# Function to assign tasks to astronauts
+def assign_tasks():
+    """Assign crew members and their tasks"""
+    astronauts = []
+    tasks = ["Navigation", "Engineering", "Communication"]
 
-# FOR i from 0 to 2
-for i in range(3):
-    name = input("Enter astronaut name: ").capitalize().strip()
-    # PROMPT user for astronaut name
-    while True:
-        task = (
-            input(
-                f"Choose a task for {name} (Navigation, Engineering, Communication): "
+    for i in range(3):
+        name = input("Enter astronaut name: ")
+        while True:
+            task = (
+                input(
+                    f"Choose a task for {name} (Navigation, Engineering, Communication): "
+                )
+                .capitalize()
+                .strip()
             )
-            .capitalize()
-            .strip()
-        )
-        if task in tasks:
-            break
+            if task in tasks:
+                break
+            else:
+                print("Invalid task. Please choose from the given options.")
+
+        astronauts.append((name, task))
+        print()
+
+    return astronauts
+
+
+def check_oxygen_level():
+    """Check and validate spaceship oxygen level"""
+    oxygen = int(input("Enter spaceship oxygen level (0-100): "))
+    if 0 <= oxygen <= 100:
+        if oxygen >= 30:
+            print("Oxygen Status: Stable")
         else:
-            print("Invalid task. Please choose from the given options.")
-
-    astronauts.append((name, task))
-    print()
-
-
-# Check oxygen level
-# PROMPT user for oxygen level 0 to 100
-oxygen = int(input("Enter spaceship oxygen level (0-100): "))
-if 0 <= oxygen <= 100:
-    if oxygen >= 30:
-        print("Oxygen Status: Stable")
+            print("Oxygen Status: Low")
     else:
-        print("Oxygen Status: Low")
-else:
-    print("Invalid oxygen level!")
+        print("Invalid oxygen level!")
 
-print()
-# Check system statuses
-
-failures = 0
-print("Enter system status for 3 critical systems (OK or FAIL):")
-# FOR i from 0 to 2
-# PROMPT user for system status ok or fail
-for i in range(3):
-    status = input(f"System {i + 1       }: ")
-    if status == "fail":
-        failures += 1
-
-print("Number of system failures: ", failures)
-print()
+    print()
+    return oxygen
 
 
-# IF status  FAIL
-# END IF
-# END FOR
-# Check food supply
-food = int(input("Enter total food packs available: "))
+def check_system_status():
+    """Check critical system statuses and count failures"""
+    failures = 0
+    print("Enter system status for 3 critical systems (OK or Fail):")
 
-if food >= 15:
-    print("Food Supply: Sufficient")
-    food_ok = True
-else:
-    print("Food Supply: Insufficient")
-    food_ok = False
+    for i in range(3):
+        status = input(f"System {i + 1}: ")
+        if status.lower().strip() == "fail":
+            failures += 1
 
-print("\n--- Crew Assignments ---")
-for name, task in astronauts:
-    print(f"{name}: {task}")
+    print("Number of system failures: ", failures)
+    print()
+    return failures
 
-# Final mission decision
-if oxygen >= 30 and failures == 0 and food_ok == True:
-    print("Mission Ready for Launch!")
-else:
-    print("Mission Not Ready for Launch.")
+
+def check_food_supply():
+    """Check food supply availability"""
+    food = int(input("Enter total food packs available: "))
+
+    if food >= 15:
+        print("Food Supply: Sufficient")
+        return True
+    else:
+        print("Food Supply: Insufficient")
+        return False
+
+
+def display_crew_assignments(astronauts):
+    """Display crew member assignments"""
+    print("\n--- Crew Assignments ---")
+    for name, task in astronauts:
+        print(f"{name}: {task}")
+
+
+def make_mission_decision(oxygen, failures, food_ok):
+    """Determine if mission is ready for launch"""
+    if oxygen >= 30 and failures == 0 and food_ok:
+        print("Mission Ready for Launch!")
+    else:
+        print("Mission Not Ready for Launch.")
+
+
+def main():
+    """Main program to run space mission simulation"""
+    astronauts = assign_tasks()
+    oxygen = check_oxygen_level()
+    failures = check_system_status()
+    food_ok = check_food_supply()
+
+    display_crew_assignments(astronauts)
+    make_mission_decision(oxygen, failures, food_ok)
+
+
+if __name__ == "__main__":
+    main()
 
 # ---------------------------------- End of code ----------------------------------
